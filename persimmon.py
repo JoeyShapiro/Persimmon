@@ -38,15 +38,18 @@ def get_recomendations(id):
 
 # this gives wierd data. like checks and stuff
 # get user data
-url = f"{BASE_URL}/animelist/DiabloHunter10?status=2"
+url = f"{BASE_URL}/animelist/yoeyshapiro?status=2"
+print(url)
 page = requests.get(url)
 soup = BeautifulSoup(page.content, "html.parser")
-print(page.content)
+print(soup.contents)
 # write to file <---------
+with open('test.html', 'w') as f:
+    f.write(str(soup.contents))
 
 found_recs = soup.find_all("tr", class_="list-table-data") # list-table-data
 for r in found_recs:
-    print(r)
+    # print(r)
     break
 
 # for r in get_recomendations('29803/Overlord'):
