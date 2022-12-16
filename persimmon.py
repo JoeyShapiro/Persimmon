@@ -1,3 +1,4 @@
+import json
 import requests
 from bs4 import BeautifulSoup
 
@@ -47,10 +48,24 @@ print(soup.contents)
 with open('test.html', 'w') as f:
     f.write(str(soup.contents))
 
-found_recs = soup.find_all("tr", class_="list-table-data") # list-table-data
-for r in found_recs:
-    # print(r)
+print('#######')
+animes_watched = []
+found_recs = soup.find_all("table", class_="list-table") # list-table-data
+if len(found_recs) > 1:
+    print('more than one')
+found_recs = found_recs[0]
+for r in found_recs: # should only ever be one
+    data = json.loads(r['data-items']) #data-broadcasts
+    # print(json.dumps(data, indent='\t'))
+    for anime in data:
+        watched = {
+            "name": anime['anime_title'],
+            "anime_url": anime['anime_url'],
+            "score": anime['score']
+        }
+        animes_watched.append(watched)
     break
 
+print(animes_watched)
 # for r in get_recomendations('29803/Overlord'):
 #     print(r)
