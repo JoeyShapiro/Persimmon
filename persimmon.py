@@ -37,26 +37,18 @@ def get_recomendations(id):
 
     return recommendations
 
-# this gives wierd data. like checks and stuff
-# get user data
-url = f"{BASE_URL}/animelist/yoeyshapiro?status=2"
-print(url)
-page = requests.get(url)
-soup = BeautifulSoup(page.content, "html.parser")
-print(soup.contents)
-# write to file <---------
-with open('test.html', 'w') as f:
-    f.write(str(soup.contents))
+def get_watched(user):
+    url = f"{BASE_URL}/animelist/{user}?status=2"
+    # print(url)
+    animes_watched = []
+    page = requests.get(url)
+    soup = BeautifulSoup(page.content, "html.parser")
 
-print('#######')
-animes_watched = []
-found_recs = soup.find_all("table", class_="list-table") # list-table-data
-if len(found_recs) > 1:
-    print('more than one')
-found_recs = found_recs[0]
-for r in found_recs: # should only ever be one
-    data = json.loads(r['data-items']) #data-broadcasts
-    # print(json.dumps(data, indent='\t'))
+    found_recs = soup.find_all("table", class_="list-table") # list-table-data
+    if len(found_recs) > 1:
+        print('more than one')
+    found_recs = found_recs[0]
+    data = json.loads(found_recs['data-items']) #data-broadcasts
     for anime in data:
         watched = {
             "name": anime['anime_title'],
@@ -64,8 +56,9 @@ for r in found_recs: # should only ever be one
             "score": anime['score']
         }
         animes_watched.append(watched)
-    break
 
-print(animes_watched)
+    return animes_watched
+
+print(get_watched('yoeyshapiro'))
 # for r in get_recomendations('29803/Overlord'):
 #     print(r)
