@@ -76,8 +76,9 @@ def get_watched(user):
 # ACTUAL CODE
 threshold = 1
 bytesDownloaded = 0
+user = 'yoeyshapiro'
 
-watched, bytes_user = get_watched('yoeyshapiro')
+watched, bytes_user = get_watched(user)
 bytesDownloaded += bytes_user
 
 recommendations = []
@@ -117,10 +118,11 @@ for anime in pbar:
         }
         mapped_recs[anime['link']] = rec # can i use this to search
 
-print(len(mapped_recs))
 final = [ pair[1] for pair in list(mapped_recs.items())]
 sorted_recs = sorted(final, key=lambda x: len(x['times_recommended']), reverse=True)
 
+print(f'Showing recommendations for \"{user}\"')
+print('This list is sorted by the amount of times an anime is recommended by another anime')
 # now deal with the pairs and how; and show bytes downloaded; also what if i already watched it (GNN)
 for anime in sorted_recs:
     if len(anime['times_recommended']) > 1:
