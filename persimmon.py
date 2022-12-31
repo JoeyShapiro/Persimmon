@@ -165,11 +165,32 @@ soft_items(recs_as_list, 'ai_score')
 sorted_recs = sorted(recs_as_list, key=lambda x: x['ai_score_soft'], reverse=True)
 
 
-print(f'Showing recommendations for \"{user}\"')
-print('This list is sorted by the amount of times an anime is recommended by another anime')
-# now deal with the pairs and how; and show bytes downloaded; also what if i already watched it (GNN)
-for anime in sorted_recs:
-    if anime['ai_score_soft'] > 0.1:
-        print(anime['name'], "############", anime['ai_score_soft'])
+# print(f'Showing recommendations for \"{user}\"')
+# print('This list is sorted by the amount of times an anime is recommended by another anime')
+# # now deal with the pairs and how; and show bytes downloaded; also what if i already watched it (GNN)
+# for anime in sorted_recs:
+#     if anime['ai_score_soft'] > 0.1:
+#         print(anime['name'], "############", anime['ai_score_soft'])
 
-print(f'Total bytes downloadled {convert_size(bytesDownloaded)}')
+# print(f'Total bytes downloadled {convert_size(bytesDownloaded)}')
+
+with open('recommendations.html', 'w') as f:
+    f.write(f'<h1>Username: {user}</h1>\n')
+    f.write(f'<h3>Bytes Downloaded: {convert_size(bytesDownloaded)}</h3>\n')
+    f.write(f'<h3>{user} has watched {len(watched)} anime, and was recommended {len(sorted_recs)}.</h3>\n')
+    f.write('<table>\n')
+    f.write('\t<tr>\n')
+    f.write('\t\t<th>Name</th>\n')
+    f.write('\t\t<th>Soft Score</th>\n')
+    f.write('\t\t<th>Amount</th>\n')
+    f.write('\t\t<th>Score</th>\n')
+    f.write('\t</tr>\n')
+    for anime in sorted_recs:
+        f.write('\t<tr>\n')
+        f.write(f'\t\t<td><a href="{anime["link"]}">{anime["name"]}</a></td>\n')
+        f.write(f'\t\t<td>{anime["ai_score_soft"]}</td>\n')
+        f.write(f'\t\t<td>{len(anime["times_recommended"])}</td>\n')
+        f.write(f'\t\t<td>{anime["ai_score"]}</td>\n')
+        f.write('\t</tr>\n')
+
+    f.write('</table>\n')
