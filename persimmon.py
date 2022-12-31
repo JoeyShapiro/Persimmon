@@ -176,6 +176,48 @@ sorted_recs = sorted(recs_as_list, key=lambda x: x['ai_score_soft'], reverse=Tru
 # print(f'Total bytes downloadled {convert_size(bytesDownloaded)}')
 
 with open('recommendations.html', 'w') as f:
+    f.write("""
+<!DOCTYPE html>
+<html>
+<style>
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 300px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -150px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+</style>
+    """)
+
     f.write(f'<h1>Username: {user}</h1>\n')
     f.write(f'<h3>Bytes Downloaded: {convert_size(bytesDownloaded)}</h3>\n')
     f.write(f'<h3>{user} has watched {len(watched)} anime, and was recommended {len(sorted_recs)}.</h3>\n')
@@ -187,14 +229,21 @@ with open('recommendations.html', 'w') as f:
     f.write('\t\t<th>Score</th>\n')
     f.write('\t</tr>\n')
     for anime in sorted_recs:
+        toolltip = [f"{rec['recommender']}: {rec['amount']}" for rec in anime['times_recommended']]
+        
         f.write('\t<tr>\n')
         f.write(f'\t\t<td><a href="{anime["link"]}">{anime["name"]}</a></td>\n')
         f.write(f'\t\t<td>{anime["ai_score_soft"]}</td>\n')
-        f.write(f'\t\t<td>{len(anime["times_recommended"])}</td>\n')
+        f.write(f'\t\t<td class="tooltip">{len(anime["times_recommended"])}<span class="tooltiptext">{"</br>".join(toolltip)}</span></td>\n')
         f.write(f'\t\t<td>{anime["ai_score"]}</td>\n')
         f.write('\t</tr>\n')
 
     f.write('</table>\n')
+
+    f.write("""
+</body>
+</html>
+    """)
 
 # graph time
 G = nx.Graph()
