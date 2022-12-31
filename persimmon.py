@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 import math
+import numpy as np
 
 # could use `anime` as base, but confusing (/anime(list)/)
 BASE_URL = "https://myanimelist.net" # always end with no slash, looks nicer
@@ -10,6 +11,8 @@ BASE_URL = "https://myanimelist.net" # always end with no slash, looks nicer
 # page = requests.get(URL)
 
 # print(len(page.content))
+
+# ai score = sum(k_score * k_recommenders) k = current anime
 
 def convert_size(size_bytes):
    if size_bytes == 0:
@@ -19,6 +22,20 @@ def convert_size(size_bytes):
    p = math.pow(1024, i)
    s = round(size_bytes / p, 2)
    return "%s %s" % (s, size_name[i])
+
+def softmax_animes(animes, field):
+    """Modifies the given list by adding a softmaxed, of the given field. The softmax will be in f'{field}_soft'"""
+    bottom = np.exp([rec[field] for rec in animes]).sum()
+
+    for anime in animes:
+        anime[f'{field}_soft'] = np.exp(anime[field]) / bottom
+
+def soft_items(items, field):
+    """Modifies the given list by adding a \"soft\" to the dict. This is field / max. Stored in f'{field}_soft'"""
+    m = max([item[field] for item in items])
+
+    for item in items:
+        item[f'{field}_soft'] = item[field] / m
 
 def get_recomendations(id):
     url = f"{BASE_URL}/{id}/userrecs" #f"{BASE_URL}/anime/{id}/userrecs"
@@ -95,16 +112,24 @@ for anime in pbar:
 mapped_recs = {} # best way?
 uniques = []
 
+# remove already watched ones (i feel like i already do this)
+for anime in watched: # smart to use watched
+    for rec in recommendations:
+        if f"{BASE_URL}{anime['anime_url']}" == rec['link']:
+            recommendations.remove(rec)
+
+# convert the recs to a tree list
 pbar = tqdm(recommendations, total=len(recommendations))
 for anime in pbar:
     pbar.set_description(f'Mapping recommendations')
-    if anime['link'] in uniques:
+    # should remake to have 'if' be 'isNew'
+    if anime['link'] in uniques: # if its a repeat
         mapped_recs[anime['link']]['times_recommended'].append(
             {
                 "recommender": anime['recommender'],
                 "amount": anime['amount']
             })
-    else:
+    else: # if it hasnt been seen before
         uniques.append(anime['link'])
         rec = {
             'name': anime['name'],
@@ -115,17 +140,36 @@ for anime in pbar:
                     "amount": anime['amount']
                 }
             ],
+            'ai_score': 0
         }
         mapped_recs[anime['link']] = rec # can i use this to search
 
-final = [ pair[1] for pair in list(mapped_recs.items())]
-sorted_recs = sorted(final, key=lambda x: len(x['times_recommended']), reverse=True)
+recs_as_list = [ pair[1] for pair in list(mapped_recs.items())]
+
+# all i really need
+watched_scores = {}
+for anime in watched:
+    watched_scores[anime['anime_url']] = anime['score']
+
+# get ai score (better version of 'sum amounts')
+print('Getting softmaxed, \"AI\" scores...')
+for anime in recs_as_list:
+    for recommender in anime['times_recommended']:
+        # sum(rec_score * rec_amount)
+        anime['ai_score'] += watched_scores[recommender['recommender']] * recommender['amount']
+        # print(anime['ai_score'], '+=', watched_scores[recommender['recommender']], '*', recommender['amount'], recommender['recommender'])
+
+# softmax_animes(recs_as_list, 'ai_score')
+soft_items(recs_as_list, 'ai_score')
+
+sorted_recs = sorted(recs_as_list, key=lambda x: x['ai_score_soft'], reverse=True)
+
 
 print(f'Showing recommendations for \"{user}\"')
 print('This list is sorted by the amount of times an anime is recommended by another anime')
 # now deal with the pairs and how; and show bytes downloaded; also what if i already watched it (GNN)
 for anime in sorted_recs:
-    if len(anime['times_recommended']) > 1:
-        print(anime['name'], "############", sum(recommender['amount'] for recommender in anime['times_recommended']))
+    if anime['ai_score_soft'] > 0.1:
+        print(anime['name'], "############", anime['ai_score_soft'])
 
 print(f'Total bytes downloadled {convert_size(bytesDownloaded)}')
