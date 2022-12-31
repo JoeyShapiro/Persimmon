@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from tqdm import tqdm
 import math
 import numpy as np
+import networkx as nx
 
 # could use `anime` as base, but confusing (/anime(list)/)
 BASE_URL = "https://myanimelist.net" # always end with no slash, looks nicer
@@ -194,3 +195,16 @@ with open('recommendations.html', 'w') as f:
         f.write('\t</tr>\n')
 
     f.write('</table>\n')
+
+# graph time
+G = nx.Graph()
+for anime in sorted_recs:
+    if anime['ai_score_soft'] >= 0.1:
+        for rec in anime['times_recommended']:
+            G.add_edge(anime['link'], rec['recommender'])
+
+import matplotlib.pyplot as plt
+
+nx.draw(G, with_labels=True)
+
+plt.show()
