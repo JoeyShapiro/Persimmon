@@ -74,6 +74,8 @@ def get_watched(user):
     animes_watched = []
     page = requests.get(url)
     soup = BeautifulSoup(page.content, "html.parser")
+    with open('test2.html', 'w') as f:
+        f.write(str(page.content))
 
     found_recs = soup.find_all("table", class_="list-table") # list-table-data
     if len(found_recs) > 1:
@@ -94,7 +96,7 @@ def get_watched(user):
 # ACTUAL CODE
 threshold = 1
 bytesDownloaded = 0
-user = 'yoeyshapiro'
+user = 'yoeyshapiro'#'Flare_Eyes'
 
 watched, bytes_user = get_watched(user)
 bytesDownloaded += bytes_user
@@ -230,7 +232,7 @@ with open('recommendations.html', 'w') as f:
     f.write('\t</tr>\n')
     for anime in sorted_recs:
         toolltip = [f"{rec['recommender']}: {rec['amount']}" for rec in anime['times_recommended']]
-        
+
         f.write('\t<tr>\n')
         f.write(f'\t\t<td><a href="{anime["link"]}">{anime["name"]}</a></td>\n')
         f.write(f'\t\t<td>{anime["ai_score_soft"]}</td>\n')

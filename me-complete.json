@@ -1,0 +1,267 @@
+{
+    "completed": [
+        {
+            "status": 2,
+            "score": 10,
+            "tags": "",
+            "is_rewatching": 0,
+            "num_watched_episodes": 1,
+            "created_at": 1582966198,
+            "updated_at": 1582966202,
+            "anime_title": "Boku no Pico",
+            "anime_title_eng": "",
+            "anime_num_episodes": 1,
+            "anime_airing_status": 2,
+            "anime_id": 1639,
+            "anime_studios": null,
+            "anime_licensors": null,
+            "anime_season": null,
+            "anime_total_members": 176111,
+            "anime_total_scores": 120339,
+            "anime_score_val": 4.23,
+            "has_episode_video": false,
+            "has_promotion_video": false,
+            "has_video": false,
+            "video_url": "/anime/1639/Boku_no_Pico/video",
+            "genres": [
+                {
+                    "id": 28,
+                    "name": "Boys Love"
+                },
+                {
+                    "id": 12,
+                    "name": "Hentai"
+                }
+            ],
+            "demographics": [],
+            "title_localized": null,
+            "anime_url": "/anime/1639/Boku_no_Pico",
+            "anime_image_path": "https://cdn.myanimelist.net/r/192x272/images/anime/12/39497.jpg?s=e226c7af701113df526b714b0b5b64ce",
+            "is_added_to_list": false,
+            "anime_media_type_string": "OVA",
+            "anime_mpaa_rating_string": "Rx",
+            "start_date_string": null,
+            "finish_date_string": null,
+            "anime_start_date_string": "09-07-06",
+            "anime_end_date_string": "09-07-06",
+            "days_string": null,
+            "storage_string": "",
+            "priority_string": "Low",
+            "notes": "",
+            "editable_notes": ""
+        },
+        {
+            "status": 2,
+            "score": 9,
+            "tags": "",
+            "is_rewatching": 0,
+            "num_watched_episodes": 24,
+            "created_at": 1582965518,
+            "updated_at": 1582965525,
+            "anime_title": "Dr. Stone",
+            "anime_title_eng": "Dr. Stone",
+            "anime_num_episodes": 24,
+            "anime_airing_status": 2,
+            "anime_id": 38691,
+            "anime_studios": null,
+            "anime_licensors": null,
+            "anime_season": null,
+            "anime_total_members": 1621234,
+            "anime_total_scores": 980500,
+            "anime_score_val": 8.29,
+            "has_episode_video": true,
+            "has_promotion_video": true,
+            "has_video": true,
+            "video_url": "/anime/38691/Dr_Stone/video",
+            "genres": [
+                {
+                    "id": 2,
+                    "name": "Adventure"
+                },
+                {
+                    "id": 4,
+                    "name": "Comedy"
+                },
+                {
+                    "id": 24,
+                    "name": "Sci-Fi"
+                }
+            ],
+            "demographics": [
+                {
+                    "id": 27,
+                    "name": "Shounen"
+                }
+            ],
+            "title_localized": null,
+            "anime_url": "/anime/38691/Dr_Stone",
+            "anime_image_path": "https://cdn.myanimelist.net/r/192x272/images/anime/1613/102576.jpg?s=714df8b10122b48bc88d649c2684508a",
+            "is_added_to_list": false,
+            "anime_media_type_string": "TV",
+            "anime_mpaa_rating_string": "PG-13",
+            "start_date_string": null,
+            "finish_date_string": null,
+            "anime_start_date_string": "07-05-19",
+            "anime_end_date_string": "12-13-19",
+            "days_string": null,
+            "storage_string": "",
+            "priority_string": "Low",
+            "notes": "",
+            "editable_notes": ""
+        },
+        {
+            "status": 2,
+            "score": 7,
+            "tags": "",
+            "is_rewatching": 0,
+            "num_watched_episodes": 6,
+            "created_at": 1582966315,
+            "updated_at": 1582966320,
+            "anime_title": "FLCL",
+            "anime_title_eng": "FLCL",
+            "anime_num_episodes": 6,
+            "anime_airing_status": 2,
+            "anime_id": 227,
+            "anime_studios": null,
+            "anime_licensors": null,
+            "anime_season": null,
+            "anime_total_members": 784092,
+            "anime_total_scores": 417454,
+            "anime_score_val": 8.03,
+            "has_episode_video": false,
+            "has_promotion_video": true,
+            "has_video": true,
+            "video_url": "/anime/227/FLCL/video",
+            "genres": [
+                {
+                    "id": 1,
+                    "name": "Action"
+                },
+                {
+                    "id": 5,
+                    "name": "Avant Garde"
+                },
+                {
+                    "id": 4,
+                    "name": "Comedy"
+                },
+                {
+                    "id": 24,
+                    "name": "Sci-Fi"
+                }
+            ],
+            "demographics": [],
+            "title_localized": null,
+            "anime_url": "/anime/227/FLCL",
+            "anime_image_path": "https://cdn.myanimelist.net/r/192x272/images/anime/7/77356.jpg?s=cea42bd34b6b6cf6c626364a2d75496b",
+            "is_added_to_list": false,
+            "anime_media_type_string": "OVA",
+            "anime_mpaa_rating_string": "PG-13",
+            "start_date_string": null,
+            "finish_date_string": null,
+            "anime_start_date_string": "04-26-00",
+            "anime_end_date_string": "03-16-01",
+            "days_string": null,
+            "storage_string": "",
+            "priority_string": "Low",
+            "notes": "",
+            "editable_notes": ""
+        },
+        {
+            "status": 2,
+            "score": 10,
+            "tags": "",
+            "is_rewatching": 0,
+            "num_watched_episodes": 14,
+            "created_at": 1582965539,
+            "updated_at": 1582965543,
+            "anime_title": "Honzuki no Gekokujou: Shisho ni Naru Tame ni wa Shudan wo Erandeiraremasen",
+            "anime_title_eng": "Ascendance of a Bookworm",
+            "anime_num_episodes": 14,
+            "anime_airing_status": 2,
+            "anime_id": 39468,
+            "anime_studios": null,
+            "anime_licensors": null,
+            "anime_season": null,
+            "anime_total_members": 279983,
+            "anime_total_scores": 145375,
+            "anime_score_val": 8,
+            "has_episode_video": true,
+            "has_promotion_video": true,
+            "has_video": true,
+            "video_url": "/anime/39468/Honzuki_no_Gekokujou__Shisho_ni_Naru_Tame_ni_wa_Shudan_wo_Erandeiraremasen/video",
+            "genres": [
+                {
+                    "id": 10,
+                    "name": "Fantasy"
+                }
+            ],
+            "demographics": [],
+            "title_localized": null,
+            "anime_url": "/anime/39468/Honzuki_no_Gekokujou__Shisho_ni_Naru_Tame_ni_wa_Shudan_wo_Erandeiraremasen",
+            "anime_image_path": "https://cdn.myanimelist.net/r/192x272/images/anime/1582/101697.jpg?s=5098eede8b90e0f2432f5538c613255c",
+            "is_added_to_list": false,
+            "anime_media_type_string": "TV",
+            "anime_mpaa_rating_string": "PG-13",
+            "start_date_string": null,
+            "finish_date_string": null,
+            "anime_start_date_string": "10-03-19",
+            "anime_end_date_string": "12-26-19",
+            "days_string": null,
+            "storage_string": "",
+            "priority_string": "Low",
+            "notes": "",
+            "editable_notes": ""
+        },
+        {
+            "status": 2,
+            "score": 7,
+            "tags": "",
+            "is_rewatching": 0,
+            "num_watched_episodes": 13,
+            "created_at": 1582965948,
+            "updated_at": 1582965953,
+            "anime_title": "Kobayashi-san Chi no Maid Dragon",
+            "anime_title_eng": "Miss Kobayashi\"s Dragon Maid",
+            "anime_num_episodes": 13,
+            "anime_airing_status": 2,
+            "anime_id": 33206,
+            "anime_studios": null,
+            "anime_licensors": null,
+            "anime_season": null,
+            "anime_total_members": 1179412,
+            "anime_total_scores": 711952,
+            "anime_score_val": 7.97,
+            "has_episode_video": true,
+            "has_promotion_video": true,
+            "has_video": true,
+            "video_url": "/anime/33206/Kobayashi-san_Chi_no_Maid_Dragon/video",
+            "genres": [
+                {
+                    "id": 10,
+                    "name": "Fantasy"
+                },
+                {
+                    "id": 36,
+                    "name": "Slice of Life"
+                }
+            ],
+            "demographics": [],
+            "title_localized": null,
+            "anime_url": "/anime/33206/Kobayashi-san_Chi_no_Maid_Dragon",
+            "anime_image_path": "https: //cdn.myanimelist.net/r/192x272/images/anime/5/85434.jpg?s=9a21feb1832208c1e111c95670016705",
+            "is_added_to_list": false,
+            "anime_media_type_string": "TV",
+            "anime_mpaa_rating_string": "PG-13",
+            "start_date_string": null,
+            "finish_date_string": null,
+            "anime_start_date_string": "01-12-17",
+            "anime_end_date_string": "04-06-17",
+            "days_string": null,
+            "storage_string": "",
+            "priority_string": "Low",
+            "notes": "",
+            "editable_notes": ""
+        }
+    ]
+}
