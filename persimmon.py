@@ -74,8 +74,8 @@ def get_watched(user):
     animes_watched = []
     page = requests.get(url)
     soup = BeautifulSoup(page.content, "html.parser")
-    with open('test2.html', 'w') as f:
-        f.write(str(page.content))
+    # with open('test2.html', 'w') as f:
+    #     f.write(str(page.content))
 
     found_recs = soup.find_all("table", class_="list-table") # list-table-data
     if len(found_recs) > 1:
